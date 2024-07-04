@@ -3,6 +3,7 @@
 // In your Globe page component
 import React, { useEffect, useState } from 'react';
 import VoiceControlledSphere from '../../components/voice-controlled-sphere';
+import { Navigation} from '../../components/Navigation'
 
 export default function Globe() {
 
@@ -19,9 +20,13 @@ export default function Globe() {
   
 
   return (
+    <>
+    <Navigation />
     <div className='w-full h-screen'>
+      
       {testing}
     </div>
+    </>
   );
 }
 
