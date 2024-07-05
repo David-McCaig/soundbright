@@ -15,34 +15,34 @@ import {
   Html
 } from "@react-three/drei";
 
-export default function VoiceControlledSphere(props) {
+export default function VoiceControlledSphere() {
 
   useEffect(() => {
     invalidate()
     useLoader.clear()
-  },[])
+  }, [])
 
   function Track({ radius = 1, ...props }) {
     invalidate()
     const ref = useRef();
     const { update } = suspend(() => createAudio(), []);
-  
+
     let smoothAvg = 0;
     const decayFactor = 0.97;
-  
+
     useFrame(() => {
       let avg = update();
       smoothAvg = avg * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
-  
+
       // More vibrant color calculation
       const hue = (smoothAvg / 255) * 360; // Full hue range
       const saturation = 1; // Maximum saturation
       const lightness = 0.5; // Mid-range lightness for vibrant colors
       ref.current.material.color.setHSL(hue / 360, saturation, lightness);
-      
+
     });
-  
+
     return (
       <mesh ref={ref} castShadow {...props}>
         <sphereGeometry args={[radius, 64, 64]} />
@@ -56,8 +56,8 @@ export default function VoiceControlledSphere(props) {
       </mesh>
     );
   }
-  
-   async function createAudio() {
+
+  async function createAudio() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const context = new (window.AudioContext || window.webkitAudioContext)();
     const source = context.createMediaStreamSource(stream);
@@ -65,7 +65,7 @@ export default function VoiceControlledSphere(props) {
     analyser.fftSize = 64;
     source.connect(analyser);
     const data = new Uint8Array(analyser.frequencyBinCount);
-  
+
     return {
       context,
       source,
@@ -99,14 +99,13 @@ export default function VoiceControlledSphere(props) {
       </div>
     </Html>
   );
-  
+
   return (
-    <Canvas  shadows dpr={[1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
+    <Canvas shadows dpr={[1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
-        <Suspense fallback={<LoadingScreen/>}>
+        <Suspense fallback={<LoadingScreen />}>
           <Environment preset="sunset" background={false} />
-          <OrbitControls />
           <Track position={[0, 1.1, 0]} />
           <Plane
             receiveShadow
