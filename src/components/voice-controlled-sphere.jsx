@@ -15,7 +15,7 @@ import {
   Html
 } from "@react-three/drei";
 
-export default function VoiceControlledSphere() {
+export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoiseFilter}) {
 
   useEffect(() => {
     invalidate()
@@ -32,9 +32,10 @@ export default function VoiceControlledSphere() {
 
     useFrame(() => {
       let avg = update();
-      smoothAvg = avg * (1 - decayFactor) + smoothAvg * decayFactor;
+    
+      smoothAvg = (+ambientNoiseFilter + avg - 20) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
-
+      console.log(smoothAvg)
       // More vibrant color calculation
       const hue = (smoothAvg / 255) * 360; // Full hue range
       const saturation = 1; // Maximum saturation
