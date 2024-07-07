@@ -2,8 +2,10 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../public/logo-base-256x256.png";
 
-function NavBar({ambientNoiseFilter, setAmbientNoiseFilter}) {
+function NavBar({ ambientNoiseFilter, setAmbientNoiseFilter }) {
   const [showNavBar, setShowNavBar] = useState(true);
 
 
@@ -37,7 +39,10 @@ function NavBar({ambientNoiseFilter, setAmbientNoiseFilter}) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                   </svg>
                 </button>}
-                <div>Logo will go here</div>
+                <Link className="text-stone-800 flex align-middle gap-2 my-4" href="/" aria-label="Home">
+                  <Image src={Logo} alt="vocalViewer" width={32} height={32} />
+                  <h1 className=" text-stone-800 font-semibold text-lg ">vocalViewer</h1>
+                </Link>
                 <li className="font-semibold text-stone-800 text-xl ">How to use:</li>
                 <li className="font-normal"> <span className="font-semibold">Step 1: </span>You will be asked if soundBright can use your microphone. Click allow this time. This will allow the globe to react to your voice. </li>
                 <li className="font-normal"> <span className="font-semibold">Step 2: </span> If the globe is not red without you talking, you may need to adjust the slider below to account for ambient noise </li>

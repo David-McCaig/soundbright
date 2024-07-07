@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../public/logo-base-256x256.png";
 import {
   Popover,
   PopoverButton,
@@ -96,8 +98,9 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link href="#" aria-label="Home">
-              This is a logo
+            <Link className="text-stone-800 flex align-middle gap-2" href="/" aria-label="Home">
+              <Image src={Logo} alt="vocalViewer" width={32} height={32} />
+              <h1 className=" text-stone-800 font-semibold text-lg ">volumeLight</h1>
             </Link>
             <div className="hidden md:flex md:gap-x-6">
               <Link
