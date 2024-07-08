@@ -1,55 +1,56 @@
 import { Container } from './container'
+import Link from 'next/link'
 
 const faqs = [
   [
     {
-      question: 'How do I know the tips are good?',
+      question: 'What is volumeLight?',
       answer:
-        'Our whole business depends on our tips being good, so it’s in our best interest that they are. The results of our customers speak for themselves, just trust us.',
+        "VolumeLight is an innovative voice visualization tool designed to help individuals, especially those with Parkinson's, adjust their speaking volume. It provides real-time visual feedback through a color-coded 3D globe, helping users see and understand their voice volume instantly.",
     },
     {
-      question: 'Isn’t this insider trading?',
+      question: 'Who can benefit from using volumeLight?',
       answer:
-        'Yes exactly. But at scale! Historically you could only make insider trades with knowledge from your direct network. Pocket brings you insider trading tips from people you don’t even know.',
+        "VolumeLight is ideal for individuals with Parkinson's who often speak at a lower volume without realizing it. It is also a valuable tool for speech therapists and anyone looking to improve their speaking volume and clarity.",
     },
     {
-      question: 'But isn’t insider trading illegal?',
+      question: 'How do I use volumeLight?',
       answer:
-        'Here’s the thing: you’re the one doing the insider trading, not us. We’re just giving you the tips and some tools to make trades. We’re not doing anything wrong here.',
-    },
-  ],
-  [
-    {
-      question: 'Do the people giving you tips realize what they are doing?',
-      answer:
-        'Again I would argue this isn’t really our responsibility. People make their own choices. If they don’t research the consequences that’s on them, not on us.',
-    },
-    {
-      question: 'Where is Pocket based?',
-      answer:
-        'Let’s just say it’s not somewhere where the SEC is going to find us.',
-    },
-    {
-      question: 'Is there any age limit to trading on Pocket?',
-      answer:
-        'For our free plan, the age limit is based on the minimum age to trade in your country of residence. Our VIP plan uses advanced transaction anonymization though, so you can use that plan even if you’re 9 years old. Or a dog.',
+        "Simply speak towards your device's microphone, and the 3D globe will provide instant visual feedback on your speaking volume. Aim to keep the globe green to ensure optimal volume.",
     },
   ],
   [
     {
-      question: 'How did you get this on the App Store?',
+      question: 'Is volumeLight easy to set up?',
       answer:
-        'Honestly we were surprised too, but eventually we found out that the app reviewer found the app so compelling they approved it just so they could use it themselves.',
+        "Yes, volumeLight is designed to be user-friendly. Once you access the tool, it automatically calibrates with your device's microphone, and you can start using it immediately.",
     },
     {
-      question: 'How do I explain the money I withdraw from Pocket to the IRS?',
+      question: 'Can I use volumeLight on any device?',
       answer:
-        'This feels like one-hundred percent a you problem. Pocket is not responsible in any way for your tax returns.',
+        "VolumeLight is compatible with most devices that have a microphone, including desktops, laptops, tablets, and smartphones.",
     },
     {
-      question: 'How do I become an insider?',
+      question: 'How can I provide feedback or get support?',
       answer:
-        'Contact us with some details about your industry and the type of access you have to apply for an insider account. Once approved, we’ll send you a guide on collecting insider information without being detected at work.',
+        'We value your feedback and are here to help. If you have any questions, need support, or want to provide feedback, please contact us through our support page or email us at support@volumelight.com.',
+    },
+  ],
+  [
+    {
+      question: 'Does volumeLight record or store my voice data?',
+      answer:
+        "No, volumeLight does not record or store your voice data. It operates in real-time to provide visual feedback on your speaking volume but does not retain any recordings or personal data.",
+    },
+    {
+      question: 'Can volumeLight be used by children or older adults?',
+      answer:
+        "Yes, volumeLight is suitable for users of all ages, including children and older adults. It is designed to be intuitive and easy to use, making it accessible for a wide range of users.",
+    },
+    {
+      question: 'Can I customize the sensitivity of volumeLight to better suit my needs?',
+      answer:
+        'volumeLight offers an ambient noise filter feature that allows you to adjust the sensitivity indirectly. This filter helps volumeLight interpret your speaking volume more accurately in various ambient environments, ensuring reliable feedback regardless of background noise levels..',
     },
   ],
 ]
@@ -71,12 +72,12 @@ export function Faq() {
           </h2>
           <p className="mt-2 text-lg text-gray-600">
             If you have anything else you want to ask,{' '}
-            <a
-              href="mailto:info@example.com"
+            <Link
+              href="/contact-us"
               className="text-gray-900 underline"
             >
               reach out to us
-            </a>
+            </Link>
             .
           </p>
         </div>
