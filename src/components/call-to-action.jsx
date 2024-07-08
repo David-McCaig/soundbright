@@ -6,17 +6,17 @@ export function CallToAction() {
   return (
     <section
       id="get-free-shares-today"
-      className="relative overflow-hidden bg-slate-100 py-20 sm:py-28"
+      className="relative overflow-hidden bg-stone-950 py-20 sm:py-28"
     >
       <div className="absolute left-20 top-1/2 -translate-y-1/2 sm:left-1/2 sm:-translate-x-1/2">
-        <CircleBackground color="#0f172a" className="animate-spin-slower" />
+        <CircleBackground color="#fafaf9" className="animate-spin-slower" />
       </div>
       <Container className="relative">
         <div className="mx-auto max-w-md sm:text-center">
-          <h2 className="text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="text-3xl font-medium tracking-tight text-slate-50 sm:text-4xl">
           Improve Communication Effortlessly
           </h2>
-          <p className="mt-4 text-lg text-slate-900">
+          <p className="mt-4 text-lg text-slate-50">
           Don&apos;t let low volume hold you back. Use volumeLight to monitor and improve your speaking volume for clearer communication.
           </p>
           <div className="mt-8 flex justify-center">

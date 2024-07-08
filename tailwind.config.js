@@ -18,6 +18,14 @@ module.exports = {
     },
     extend: {
       colors: {
+        "primary-bg-color": "#fafaf9",
+        "primary-font-color": "#0c0a09",
+        "primary-button-color": "#1c1917",
+        
+        "secondary-bg-color": "#f7f7f3",
+        "secondary-font-color": "#44403c",
+        "secondary-button-color": "#292524",
+        
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

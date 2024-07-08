@@ -3,17 +3,23 @@ import Image from 'next/image'
 // import Logo from "../../public/logo-base-256x256.png";
 
 import { Container } from './container'
+import Logo from "../../public/logo-base-256x256.png";
 
 
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50">
+    <footer className="bg-primary-bg-color">
       <Container>
         <div className="py-16">
           {/* <Logo className="mx-auto h-10 w-auto" /> */}
+
           <nav className="mt-10 text-sm" aria-label="quick links">
-            <div className="-my-1 flex justify-center gap-x-6">
+          <Link className="text-stone-800 flex align-middle gap-2 w-full mb-7 justify-center" href="/" aria-label="Home">
+              <Image src={Logo} alt="vocalViewer" width={32} height={32} />
+              <h1 className=" text-stone-800 font-semibold text-lg ">volumeLight</h1>
+            </Link>
+            <div className="-my-1 flex justify-center gap-x-6 text-primary-font-color">
               <Link href="#features">Features</Link>
               <Link href="#testimonials">Testimonials</Link>
               <Link href="#pricing">Pricing</Link>

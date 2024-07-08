@@ -176,7 +176,7 @@ function FeaturesDesktop() {
               />
             ))}
           </TabList>
-          <TabPanels className="relative mt-20 overflow-hidden rounded-4xl bg-white px-14 py-16 xl:px-16">
+          <TabPanels className="relative mt-20 overflow-hidden rounded-4xl bg-secondary-bg-color rounded-md px-14 py-16 xl:px-16">
             <div className="-mx-5 flex">
               {features.map((feature, featureIndex) => (
                 <TabPanel
@@ -213,14 +213,14 @@ export function PrimaryFeatures() {
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
-      className="pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
+      className="bg-secondary-bg-color pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-display text-3xl tracking-tight text-primary-font-color sm:text-4xl">
             Understand Your Speech Volume at a Glance.
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-4 text-lg tracking-tight text-secondary-font-color">
             Our volumeLight tool provides instant feedback on your speaking volume through an easy-to-understand color-coded system. 
           </p>
         </div>

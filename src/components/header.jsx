@@ -79,7 +79,7 @@ function MobileNavigation() {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <PopoverPanel className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5">
+          <PopoverPanel className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-primary-font-color shadow-xl ring-1 ring-slate-900/5">
             <MobileNavLink href="#features">Features</MobileNavLink>
             <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
             <MobileNavLink href="#pricing">Pricing</MobileNavLink>
@@ -94,7 +94,7 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="py-10 bg-stone-50">
+    <header className="py-10 bg-secondary-bg-color">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
@@ -105,19 +105,19 @@ export function Header() {
             <div className="hidden md:flex md:gap-x-6">
               <Link
                 href="/"
-                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-900 hover:bg-slate-200 hover:text-slate-800"
+                className="inline-block rounded-lg px-2 py-1 text-sm text-primary-font-color hover:bg-slate-200 hover:text-secondary-font-color"
               >
                 Features
               </Link>
               <Link
                 href="/"
-                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-900 hover:bg-slate-200 hover:text-slate-800"
+                className="inline-block rounded-lg px-2 py-1 text-sm text-primary-font-color hover:bg-slate-200 hover:text-secondary-font-color"
               >
                 testimonials
               </Link>
               <Link
                 href="/"
-                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-900 hover:bg-slate-200 hover:text-slate-800"
+                className="inline-block rounded-lg px-2 py-1 text-sm text-primary-font-color hover:bg-slate-200 hover:text-secondary-font-color"
               >
                 Pricing
               </Link>
