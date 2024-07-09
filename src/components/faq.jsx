@@ -1,5 +1,7 @@
 import { Container } from './container'
 import Link from 'next/link'
+import { TransitionEffect } from "../lib/transition-effect";
+
 
 const faqs = [
   [
@@ -21,9 +23,9 @@ const faqs = [
   ],
   [
     {
-      question: 'Is volumeLight easy to set up?',
+      question: 'How do I use the ambient noise filter?',
       answer:
-        "Yes, volumeLight is designed to be user-friendly. Once you access the tool, it automatically calibrates with your device's microphone, and you can start using it immediately.",
+        "The ambient noise filter helps you adjust the sensitivity of volumeLight based on your environment. To ensure accurate feedback despite background noise, follow these steps. Adjust the filter slider until the globe turns red when you're not speaking. Once the globe is red without any talking, you're good to go!",
     },
     {
       question: 'Can I use volumeLight on any device?',
@@ -56,8 +58,10 @@ const faqs = [
 ]
 
 export function Faq() {
+  const { transitionRef, determineTransitionType } = TransitionEffect();
   return (
     <section
+      style={determineTransitionType("translatex(100px)")}
       id="faq"
       aria-labelledby="faqs-title"
       className="border-t border-gray-200 py-20 sm:py-32 bg-primary-bg-color"
@@ -82,6 +86,7 @@ export function Faq() {
           </p>
         </div>
         <ul
+          ref={transitionRef}
           role="list"
           className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3"
         >

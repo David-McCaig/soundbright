@@ -5,6 +5,9 @@ import Image from 'next/image'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
 
+
+import { TransitionEffect } from "../lib/transition-effect";
+
 import { Container } from './container'
 import screenshotContacts from '../../public/green-globe.png'
 import screenshotInventory from '../../public/yellow-globe.png'
@@ -176,7 +179,7 @@ function FeaturesDesktop() {
               />
             ))}
           </TabList>
-          <TabPanels className="relative mt-20 overflow-hidden rounded-4xl bg-secondary-bg-color rounded-md px-14 py-16 xl:px-16">
+          <TabPanels className="relative mt-0 overflow-hidden rounded-4xl bg-secondary-bg-color rounded-md px-14 py-16 xl:px-16">
             <div className="-mx-5 flex">
               {features.map((feature, featureIndex) => (
                 <TabPanel
@@ -209,19 +212,22 @@ function FeaturesDesktop() {
 }
 
 export function PrimaryFeatures() {
+  const { transitionRef, determineTransitionType } = TransitionEffect();
+
   return (
     <section
+      style={determineTransitionType("translateY(100px)")}
       
       aria-label="Features for simplifying everyday business tasks"
       className="bg-secondary-bg-color pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <Container id='features'>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-primary-font-color sm:text-4xl">
+          <h2  className="font-display text-3xl tracking-tight text-primary-font-color sm:text-4xl">
             Understand Your Speech Volume at a Glance.
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-secondary-font-color">
-            Our volumeLight tool provides instant feedback on your speaking volume through an easy-to-understand color-coded system.
+          <p ref={transitionRef} className="mt-4 text-lg tracking-tight text-secondary-font-color">
+            Our volumeLight tool provides instant feedback on your speaking volume through a simple color-coded system.
           </p>
         </div>
         <FeaturesMobile />
