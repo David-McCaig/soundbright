@@ -16,7 +16,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="space-y-6 pt-6  md:pt-10 lg:pt-32 bg-primary-bg-color">
+    <section className="space-y-6 pt-6  md:pt-10 lg:pt-32 bg-secondary-bg-color">
       <div className="container h-[55rem] flex max-w-[74rem] flex-col items-center gap-4 text-center">
         <h1 className="text-primary-font-color font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
           volumeLight <br />A Voice {" "}
@@ -31,7 +31,7 @@ export default function Hero() {
         </p>
         <div className="space-x-4">
           <div onClick={handleClick} >
-            <PrimaryButton>Get Started</PrimaryButton>
+            <PrimaryButton>Try for Free</PrimaryButton>
           </div>
         </div>
         <PreviewSphere />

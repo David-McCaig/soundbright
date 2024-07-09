@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Logo from "../../public/logo-base-256x256.png";
 import {
   Popover,
@@ -15,6 +17,7 @@ import clsx from "clsx";
 
 import Button from "./primary-button";
 import { Container } from "./container";
+import HowToModal from "./how-to-modal"
 
 function MobileNavLink({ href, children }) {
   return (
@@ -81,8 +84,8 @@ function MobileNavigation() {
         >
           <PopoverPanel className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-primary-font-color shadow-xl ring-1 ring-slate-900/5">
             <MobileNavLink href="#features">Features</MobileNavLink>
-            <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
-            <MobileNavLink href="#pricing">Pricing</MobileNavLink>
+            <MobileNavLink href="#faq">FAQs</MobileNavLink>
+            <MobileNavLink href="#pricing">Contact Us</MobileNavLink>
             <hr className="m-2 border-slate-300/40" />
             <MobileNavLink href="/login">Sign in</MobileNavLink>
           </PopoverPanel>
@@ -93,40 +96,57 @@ function MobileNavigation() {
 }
 
 export function Header() {
+  const pathname = usePathname()
+
+  let [isOpen, setIsOpen] = useState(false)
+
+  const navigateHomeClick = () => {
+    window.location.href = '/';
+  };
+
+  const navigateToGlobeClick = () => {
+    window.location.href = '/globe';
+  }
+
   return (
-    <header className="py-10 bg-secondary-bg-color">
+    <header className="py-8 bg-secondary-bg-color">
+      <HowToModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link className="text-stone-800 flex align-middle gap-2" href="/" aria-label="Home">
+            <div onClick={navigateHomeClick} className="text-stone-800 flex align-middle gap-2 cursor-pointer" aria-label="Home">
               <Image src={Logo} alt="vocalViewer" width={32} height={32} />
               <h1 className=" text-stone-800 font-semibold text-lg ">volumeLight</h1>
-            </Link>
+            </div>
             <div className="hidden md:flex md:gap-x-6">
               <Link
-                href="/"
+                href="#features"
                 className="inline-block rounded-lg px-2 py-1 text-sm text-primary-font-color hover:bg-slate-200 hover:text-secondary-font-color"
               >
                 Features
               </Link>
               <Link
-                href="/"
+                href="#faq"
                 className="inline-block rounded-lg px-2 py-1 text-sm text-primary-font-color hover:bg-slate-200 hover:text-secondary-font-color"
               >
-                testimonials
+                FAQs
               </Link>
               <Link
                 href="/"
                 className="inline-block rounded-lg px-2 py-1 text-sm text-primary-font-color hover:bg-slate-200 hover:text-secondary-font-color"
               >
-                Pricing
+                Contact Us
               </Link>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <Link href="/globe">
-              <Button>Get Started</Button>
-            </Link>
+            {pathname !== '/globe' ?
+              <div onClick={navigateToGlobeClick}>
+                <Button>Get Started</Button>
+              </div>
+              : <div onClick={() => setIsOpen(true)}>
+                <Button>How to Use</Button>
+              </div>}
 
             <div className="-mr-1 md:hidden">
               <MobileNavigation />

@@ -35,7 +35,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     
       smoothAvg = (+ambientNoiseFilter + avg - 20) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
-      console.log(smoothAvg)
+   
       // More vibrant color calculation
       const hue = (smoothAvg / 255) * 360; // Full hue range
       const saturation = 1; // Maximum saturation

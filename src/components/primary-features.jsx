@@ -6,9 +6,9 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from './container'
-import screenshotContacts from '../../public/macpro.png'
-import screenshotInventory from '../../public/macpro.png'
-import screenshotProfitLoss from '../../public/macpro.png'
+import screenshotContacts from '../../public/green-globe.png'
+import screenshotInventory from '../../public/yellow-globe.png'
+import screenshotProfitLoss from '../../public/red-globe.png'
 
 const features = [
   {
@@ -138,7 +138,7 @@ function FeaturesMobile() {
           <Feature feature={feature} className="mx-auto max-w-2xl" isActive />
           <div className="relative mt-10 pb-10">
             <div className="absolute -inset-x-4 bottom-0 top-8 bg-white sm:-inset-x-6" />
-            <div className="relative mx-auto w-[52.75rem] overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10">
+            <div className="relative mx-auto  overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/5 ring-1 ring-slate-500/10">
               <Image
                 className="w-full"
                 src={feature.image}
@@ -211,17 +211,17 @@ function FeaturesDesktop() {
 export function PrimaryFeatures() {
   return (
     <section
-      id="secondary-features"
+      
       aria-label="Features for simplifying everyday business tasks"
       className="bg-secondary-bg-color pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
-      <Container>
+      <Container id='features'>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-primary-font-color sm:text-4xl">
             Understand Your Speech Volume at a Glance.
           </h2>
           <p className="mt-4 text-lg tracking-tight text-secondary-font-color">
-            Our volumeLight tool provides instant feedback on your speaking volume through an easy-to-understand color-coded system. 
+            Our volumeLight tool provides instant feedback on your speaking volume through an easy-to-understand color-coded system.
           </p>
         </div>
         <FeaturesMobile />

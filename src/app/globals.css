@@ -74,3 +74,38 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .slider {
+    -webkit-appearance: none; /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 8px; /* Specified height */
+    background: #d6d3d1; /* Gradient background */
+    background-size: 200% 100%;
+    background-position: left bottom;
+    border-radius: 5px;
+    outline: none; /* Remove outline */
+    transition: background-position .2s, opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: white; /* White slider handle */
+    border: 1.5px solid black; /* Black border */
+    border-radius: 50%; /* Round slider handle */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: white; /* White slider handle */
+    border: 3px solid black; /* Black border */
+    border-radius: 50%; /* Round slider handle */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  
