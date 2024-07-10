@@ -44,7 +44,7 @@ export default function PreviewSphere() {
   
     return (
       <mesh ref={ref} castShadow {...props}>
-        <sphereGeometry args={[radius, 64, 64]} />
+        <sphereGeometry args={[radius, 32, 32]} />
         <meshPhysicalMaterial
           metalness={0.1}
           roughness={0.3}
