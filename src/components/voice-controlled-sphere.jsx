@@ -15,6 +15,8 @@ import {
   Html
 } from "@react-three/drei";
 
+import LoadingDots from "./loading-dots";
+
 export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoiseFilter}) {
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     useFrame(() => {
       let avg = update();
     
-      smoothAvg = (+ambientNoiseFilter + avg - 20) * (1 - decayFactor) + smoothAvg * decayFactor;
+      smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
    
       // More vibrant color calculation
@@ -83,20 +85,8 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
 
   const LoadingScreen = () => (
     <Html center>
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#e0e0e0',
-        color: '#000',
-        fontSize: '24px',
-      }}>
-        Loading...
+      <div className="w-full h-screen mt-[20rem]">
+        <LoadingDots />
       </div>
     </Html>
   );

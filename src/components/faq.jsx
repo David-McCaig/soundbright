@@ -35,7 +35,7 @@ const faqs = [
     {
       question: 'How can I provide feedback or get support?',
       answer:
-        'We value your feedback and are here to help. If you have any questions, need support, or want to provide feedback, please contact us through our support page or email us at support@volumelight.com.',
+        'We value your feedback and are here to help. If you have any questions, need support, or want to provide feedback, please message us through our contact us page.',
     },
   ],
   [

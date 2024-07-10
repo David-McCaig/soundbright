@@ -12,7 +12,7 @@ import {
   RandomizedLight,
 } from "@react-three/drei";
 
-export default function PreviewSphere(props) {
+export default function PreviewSphere() {
   const [intervalId, setIntervalId] = useState(null);
 
   useEffect(() => {

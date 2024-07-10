@@ -22,7 +22,7 @@ export function Footer() {
             <div className="-my-1 flex justify-center gap-x-6 text-primary-font-color">
               <Link href="#features">Features</Link>
               <Link href="#faq">FAQs</Link>
-              <Link href="#pricing">Contact Us</Link>
+              <Link href="/contact-us">Contact Us</Link>
             </div>
           </nav>
         </div>

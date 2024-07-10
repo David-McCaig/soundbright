@@ -28,7 +28,7 @@ export function CallToAction() {
             Don&apos;t let low volume hold you back. Use volumeLight to monitor and improve your speaking volume for clearer communication.
           </p>
           <div className="mt-8 flex justify-center">
-            <button onClick={navigateClick} class="relative h-12 overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 text-primary-bg-color before:absolute before:bottom-0 before:left-0 before:block before:h-full before:w-full before:translate-x-full before:bg-neutral-900 before:transition-transform hover:before:translate-x-0"><span class="relative">Try volumeLight</span></button>
+            <button onClick={navigateClick} className="relative h-12 overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 text-primary-bg-color before:absolute before:bottom-0 before:left-0 before:block before:h-full before:w-full before:translate-x-full before:bg-neutral-900 before:transition-transform hover:before:translate-x-0"><span className="relative">Try volumeLight</span></button>
           </div>
         </div>
       </Container>
