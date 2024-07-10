@@ -92,7 +92,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
   );
 
   return (
-    <Canvas shadows dpr={[1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
+    <Canvas shadows dpr={[.2, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
