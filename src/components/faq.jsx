@@ -62,7 +62,7 @@ export function Faq() {
   const { transitionRef, determineTransitionType } = TransitionEffect();
   return (
     <section
-      style={determineTransitionType("translatex(100px)")}
+      style={determineTransitionType("translatey(100px)")}
       id="faq"
       aria-labelledby="faqs-title"
       className="border-t border-gray-200 py-20 sm:py-32 bg-primary-bg-color"

@@ -141,11 +141,11 @@ export function Header() {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             {pathname !== '/globe' ?
-              <div onClick={navigateToGlobeClick}>
+              <div onClick={navigateToGlobeClick} className="hidden sm:block">
                 <Button>Get Started</Button>
               </div>
-              : <div onClick={() => setIsOpen(true)}>
-                <Button>How to Use</Button>
+              : <div onClick={() => setIsOpen(true)} >
+                <Button style="w-32">Help</Button>
               </div>}
 
             <div className="-mr-1 md:hidden">
