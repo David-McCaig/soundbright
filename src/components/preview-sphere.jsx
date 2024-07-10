@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Suspense, useRef, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -14,13 +14,8 @@ import {
 
 export default function PreviewSphere() {
   const [intervalId, setIntervalId] = useState(null);
-  const canvasRef = useRef();
 
   useEffect(() => {
-    if (canvasRef.current) {
-      canvasRef.current.style.touchAction = 'none';
-    }
-
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
@@ -90,7 +85,7 @@ export default function PreviewSphere() {
   }
 
   return (
-    <Canvas ref={canvasRef} shadows dpr={[1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
+    <Canvas shadows dpr={[1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={null}>
@@ -134,6 +129,5 @@ export default function PreviewSphere() {
     </Canvas>
   );
 }
-
 
 
