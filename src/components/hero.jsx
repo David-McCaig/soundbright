@@ -44,7 +44,7 @@ const { transitionRef, determineTransitionType } = TransitionEffect();
 
   return (
     <section style={determineTransitionType("translateY(0px)")} className="space-y-6 pt-12  md:pt-20 lg:pt-28 bg-primary-bg-color">
-      <div ref={transitionRef} className="container sm:h-[35rem] md:h-[45rem] flex max-w-[74rem] flex-col items-center gap-4 text-center">
+      <div ref={transitionRef} className="container sm:h-[35rem] md:h-[45rem] lg:h-[55rem] flex max-w-[74rem] flex-col items-center gap-4 text-center">
         <h1 className="text-primary-font-color font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
           volumeLight <br />A Voice {" "}
           <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text">
