@@ -121,6 +121,7 @@ export default function PreviewSphere() {
           autoRotateSpeed={4}
           enablePan={false}
           enableZoom={false}
+          enableRotate={false}
           minPolarAngle={Math.PI / 2.1}
           maxPolarAngle={Math.PI / 2.1}
         />

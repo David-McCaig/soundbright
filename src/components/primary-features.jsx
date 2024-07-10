@@ -217,11 +217,11 @@ export function PrimaryFeatures() {
   return (
     <section
       style={determineTransitionType("translateY(100px)")}
-      
+      id='features'
       aria-label="Features for simplifying everyday business tasks"
       className="bg-secondary-bg-color pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
-      <Container id='features'>
+      <Container >
         <div className="mx-auto max-w-2xl md:text-center">
           <h2  className="font-display text-3xl tracking-tight text-primary-font-color sm:text-4xl">
             Understand Your Speech Volume at a Glance.
