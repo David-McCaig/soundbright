@@ -12,7 +12,7 @@ import { TransitionEffect } from "../lib/transition-effect";
 
 const ContactUsForm = () => {
     const formRef = useRef(null);
-console.log(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID + "env var")
+
     const { transitionRef, determineTransitionType } = TransitionEffect();
 
     const validate = (values) => {
