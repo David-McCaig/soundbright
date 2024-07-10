@@ -1,4 +1,4 @@
-// import { AppStoreLink } from '@/components/AppStoreLink'
+'use client'
 import { CircleBackground } from './circle-background'
 import { Container } from './container'
 

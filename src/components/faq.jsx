@@ -1,3 +1,4 @@
+'use client'
 import { Container } from './container'
 import Link from 'next/link'
 import { TransitionEffect } from "../lib/transition-effect";
