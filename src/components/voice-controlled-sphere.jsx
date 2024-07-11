@@ -65,7 +65,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     const context = new (window.AudioContext || window.webkitAudioContext)();
     const source = context.createMediaStreamSource(stream);
     const analyser = context.createAnalyser();
-    analyser.fftSize = 64;
+    analyser.fftSize = 32;
     source.connect(analyser);
     const data = new Uint8Array(analyser.frequencyBinCount);
 
@@ -101,7 +101,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
   );
 
   return (
-    <Canvas shadows dpr={isMobile ? [.1, .6] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
+    <Canvas shadows dpr={isMobile ? [.1, 1.3] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
