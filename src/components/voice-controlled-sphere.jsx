@@ -2,7 +2,7 @@
 
 import * as THREE from "three";
 import { Suspense, useRef } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Canvas, useFrame, invalidate, useLoader } from "@react-three/fiber";
 import { suspend } from "suspend-react";
 import {
@@ -83,6 +83,15 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     };
   }
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof navigator !== "undefined") {
+      const mobileCheck = /iPhone|iPod|Android|Windows Phone|BB10|BlackBerry|Tizen|KaiOS/i.test(navigator.userAgent);
+      setIsMobile(mobileCheck);
+    }
+  }, []);
+
   const LoadingScreen = () => (
     <Html center>
       <div className="w-full h-screen mt-[20rem]">
@@ -92,7 +101,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
   );
 
   return (
-    <Canvas shadows dpr={[.2, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
+    <Canvas shadows dpr={isMobile ? [.1, .6] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
