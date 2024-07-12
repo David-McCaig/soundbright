@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 
-export default function MyModal({isOpen, setIsOpen}) {
+export default function MyModal({ isOpen, setIsOpen }) {
 
   function close() {
     setIsOpen(false)
@@ -21,7 +21,7 @@ export default function MyModal({isOpen, setIsOpen}) {
                 How to use:
               </DialogTitle>
               <ul className="text-primary-text-color">
-                <li className="mt-4"><span className="font-semibold">Step 1: </span>You will be asked if soundBright can use your microphone. Click allow this time. This will allow the globe to react to your voice.</li>
+                <li className="mt-4"><span className="font-semibold">Step 1: </span> You will be asked if soundBright can use your microphone. Click allow this time. This will enable the globe to react to your voice. If a pop-up does not appear and you see an error message, you will need to go into your browser&apos;s privacy and security settings to enable your microphone.</li>
                 <li className="mt-3"><span className="font-semibold">Step 2: </span> If the globe is not red without you talking, you may need to adjust the Ambient Noise Filter. Adjust the filter slider until the globe turns red when you&apos;re not speaking. Once the globe is red without any talking, you&apos;re good to go!</li>
                 <li className="mt-3"><span className="font-semibold">Step 3: </span> If the globe is in the green it means that you are talking at a sound level to where somebody should be able to hear you. If the globe is yellow or red it means that the person you are talking to might have trouble hearing you.</li>
               </ul>

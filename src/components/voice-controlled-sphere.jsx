@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { Suspense, useRef } from "react";
 import { useEffect, useState } from "react";
-import { Canvas, useFrame, invalidate, useLoader } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { suspend } from "suspend-react";
 import {
   Environment,
@@ -19,13 +19,7 @@ import LoadingDots from "./loading-dots";
 
 export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoiseFilter}) {
 
-  useEffect(() => {
-    invalidate()
-    useLoader.clear()
-  }, [])
-
   function Track({ radius = 1, ...props }) {
-    invalidate()
     const ref = useRef();
     const { update } = suspend(() => createAudio(), []);
 
