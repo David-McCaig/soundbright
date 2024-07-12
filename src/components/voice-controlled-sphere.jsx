@@ -27,6 +27,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     const decayFactor = 0.97;
 
     useFrame(() => {
+      if (!ref.current) return;
       let avg = update();
     
       smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
