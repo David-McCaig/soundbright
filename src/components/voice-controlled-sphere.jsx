@@ -1,6 +1,5 @@
 "use client";
 
-import * as THREE from "three";
 import { Suspense, useRef } from "react";
 import { useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -17,7 +16,7 @@ import {
 
 import LoadingDots from "./loading-dots";
 
-export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNoiseFilter }) {
+export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoiseFilter}) {
 
   function Track({ radius = 1, ...props }) {
     const ref = useRef();
@@ -29,10 +28,10 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
     useFrame(() => {
       if (!ref.current) return;
       let avg = update();
-
+    
       smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
-
+   
       // More vibrant color calculation
       const hue = (smoothAvg / 255) * 360; // Full hue range
       const saturation = 1; // Maximum saturation
@@ -96,20 +95,11 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
   );
 
   return (
-    <Canvas shadows dpr={isMobile ? [.1, .8] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
+    <Canvas shadows dpr={isMobile ? [.1, 1.4] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
-          {!isMobile ? <Environment preset="sunset" background={false} /> :
-            <>
-              <ambientLight intensity={0.5} />
-              <directionalLight
-                castShadow
-                position={[5, 10, 5]}
-                intensity={1}
-                shadow-mapSize-width={1024}
-                shadow-mapSize-height={1024}
-              /></>}
+          <Environment preset="sunset" background={false} />
           <Track position={[0, 1.1, 0]} />
           <Plane
             receiveShadow
