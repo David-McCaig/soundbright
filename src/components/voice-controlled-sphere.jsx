@@ -24,11 +24,9 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
 
     let smoothAvg = 0;
     const decayFactor = 0.97;
-    let frameCount = 0;
-    
+
     useFrame(() => {
       if (!ref.current) return;
-      if (isMobile && frameCount++ % 2 !== 0) return;
       let avg = update();
     
       smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
@@ -44,7 +42,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
 
     return (
       <mesh ref={ref} castShadow {...props}>
-        <sphereGeometry args={[radius, isMobile ? 16 : 32, isMobile ? 16 : 32]} />
+        <sphereGeometry args={[radius, 32, 32]} />
         <meshPhysicalMaterial
           metalness={0.1}
           roughness={0.3}
@@ -101,7 +99,7 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
-          <Environment preset="sunset" background={false} resolution={isMobile ? 16 : 256} />
+          <Environment preset="sunset" background={false} />
           <Track position={[0, 1.1, 0]} />
           <Plane
             receiveShadow
