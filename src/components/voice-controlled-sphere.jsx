@@ -16,7 +16,7 @@ import {
 
 import LoadingDots from "./loading-dots";
 
-export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoiseFilter}) {
+export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNoiseFilter }) {
 
   function Track({ radius = 1, ...props }) {
     const ref = useRef();
@@ -28,10 +28,10 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     useFrame(() => {
       if (!ref.current) return;
       let avg = update();
-    
+
       smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
-   
+
       // More vibrant color calculation
       const hue = (smoothAvg / 255) * 360; // Full hue range
       const saturation = 1; // Maximum saturation
@@ -54,27 +54,40 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
     );
   }
 
-  async function createAudio() {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const context = new (window.AudioContext || window.webkitAudioContext)();
-    const source = context.createMediaStreamSource(stream);
-    const analyser = context.createAnalyser();
-    analyser.fftSize = 32;
-    source.connect(analyser);
-    const data = new Uint8Array(analyser.frequencyBinCount);
+  const [error, setError] = useState(null); 
 
-    return {
-      context,
-      source,
-      data,
-      update: () => {
-        analyser.getByteFrequencyData(data);
-        return (data.avg = data.reduce(
-          (prev, cur) => prev + cur / data.length,
-          0
-        ));
-      },
-    };
+  async function createAudio() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const source = context.createMediaStreamSource(stream);
+      const analyser = context.createAnalyser();
+      analyser.fftSize = 32;
+      source.connect(analyser);
+      const data = new Uint8Array(analyser.frequencyBinCount);
+      return {
+        context,
+        source,
+        data,
+        update: () => {
+          analyser.getByteFrequencyData(data);
+          return (data.avg = data.reduce(
+            (prev, cur) => prev + cur / data.length,
+            0
+          ));
+        },
+      };
+    } catch (error) {
+      setError("There was an error getting the audio stream. You may need to enable your microphone in your browser settings.")
+      return {
+        context: null,
+        source: null,
+        data: new Uint8Array(),
+        update: () => 0,
+      };
+    }
+
+
   }
 
   const [isMobile, setIsMobile] = useState(false);
@@ -93,6 +106,8 @@ export default function VoiceControlledSphere({ambientNoiseFilter, setAmbientNoi
       </div>
     </Html>
   );
+
+  if(error) return  <div className="w-full h-screen mt-[20rem text-center mt-10 p-6 text-red-600">{error}</div> 
 
   return (
     <Canvas shadows dpr={isMobile ? [.1, 1.4] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
