@@ -59,34 +59,33 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
   async function createAudio() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const context = new AudioContext();
       const source = context.createMediaStreamSource(stream);
       const analyser = context.createAnalyser();
+  
       analyser.fftSize = 32;
-      source.connect(analyser);
       const data = new Uint8Array(analyser.frequencyBinCount);
+  
+      source.connect(analyser);
+  
       return {
         data,
         update: () => {
           analyser.getByteFrequencyData(data);
-          return (data.avg = data.reduce(
-            (prev, cur) => prev + cur / data.length,
-            0
-          ));
+          return data.reduce((prev, cur) => prev + cur, 0) / data.length;
         },
       };
     } catch (error) {
-      setError("There was an error getting the audio stream. You may need to enable your microphone in your browser settings.")
+      console.error("There was an error getting the audio stream:", error);
+      setError("There was an error getting the audio stream. You may need to enable your microphone in your browser settings.");
       return {
-        context: null,
-        source: null,
         data: new Uint8Array(),
         update: () => 0,
       };
     }
-
-
   }
+  
 
   const [isMobile, setIsMobile] = useState(false);
 
