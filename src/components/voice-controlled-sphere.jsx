@@ -124,7 +124,7 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
           > */}
             {/* <shadowMaterial transparent opacity={0.4} /> */}
           {/* </Plane> */}
-          {/* <AccumulativeShadows
+          <AccumulativeShadows
             temporal
             frames={200}
             color="purple"
@@ -132,7 +132,7 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
             opacity={1}
             scale={10}
             alphaTest={0.85}
-          > */}
+          >
             <RandomizedLight
               amount={8}
               radius={5}
@@ -140,7 +140,7 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
               position={[5, 3, 2]}
               bias={0.001}
             />
-          {/* </AccumulativeShadows> */}
+          </AccumulativeShadows>
         </Suspense>
         <OrbitControls
           autoRotateSpeed={4}
