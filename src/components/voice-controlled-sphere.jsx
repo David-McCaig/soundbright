@@ -114,7 +114,6 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
       <Center middle>
         <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
-          <Environment preset="sunset" background={false} />
           <Track position={[0, 1.1, 0]} />
           <Plane
             receiveShadow
@@ -141,6 +140,13 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
               bias={0.001}
             />
           </AccumulativeShadows>
+          {/* Soft directional light from the front */}
+          <directionalLight
+            position={[0, 5, 5]}
+            intensity={1}
+            castShadow
+          />
+          <ambientLight intensity={0.5} />
         </Suspense>
         <OrbitControls
           autoRotateSpeed={4}
