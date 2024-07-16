@@ -25,19 +25,18 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
     let smoothAvg = 0;
     const decayFactor = 0.97;
 
-    useFrame(() => {
+
+    useFrame(({ clock }) => {
       if (!ref.current) return;
-      let avg = update();
 
-      smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
-      ref.current.scale.setScalar(1 + smoothAvg / 500);
+      if (clock.elapsedTime % 0.1 < 0.01) {  // Throttle updates to every 0.1 seconds
+        let avg = update();
+        smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
+        ref.current.scale.setScalar(1 + smoothAvg / 500);
 
-      // More vibrant color calculation
-      const hue = (smoothAvg / 255) * 360; // Full hue range
-      const saturation = 1; // Maximum saturation
-      const lightness = 0.5; // Mid-range lightness for vibrant colors
-      ref.current.material.color.setHSL(hue / 360, saturation, lightness);
-
+        const hue = (smoothAvg / 255) * 360;
+        ref.current.material.color.setHSL(hue / 360, 1, 0.5);
+      }
     });
 
     return (
