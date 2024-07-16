@@ -112,18 +112,19 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
   return (
     <Canvas shadows dpr={isMobile ? [.1, 1.4] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
-        <color attach="background" args={["#e0e0e0"]} />
+        {/* <color attach="background" args={["#e0e0e0"]} /> */}
         <Suspense fallback={<LoadingScreen />}>
+         <Environment preset="sunset" background={false} />
           <Track position={[0, 1.1, 0]} />
-          <Plane
+          {/* <Plane
             receiveShadow
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -1, 0]}
             args={[10, 10]}
-          >
-            <shadowMaterial transparent opacity={0.4} />
-          </Plane>
-          <AccumulativeShadows
+          > */}
+            {/* <shadowMaterial transparent opacity={0.4} /> */}
+          {/* </Plane> */}
+          {/* <AccumulativeShadows
             temporal
             frames={200}
             color="purple"
@@ -131,7 +132,7 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
             opacity={1}
             scale={10}
             alphaTest={0.85}
-          >
+          > */}
             <RandomizedLight
               amount={8}
               radius={5}
@@ -139,14 +140,7 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
               position={[5, 3, 2]}
               bias={0.001}
             />
-          </AccumulativeShadows>
-          {/* Soft directional light from the front */}
-          <directionalLight
-            position={[0, 5, 5]}
-            intensity={1}
-            castShadow
-          />
-          <ambientLight intensity={0.5} />
+          {/* </AccumulativeShadows> */}
         </Suspense>
         <OrbitControls
           autoRotateSpeed={4}
