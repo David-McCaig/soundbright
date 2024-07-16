@@ -66,8 +66,6 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
       source.connect(analyser);
       const data = new Uint8Array(analyser.frequencyBinCount);
       return {
-        context,
-        source,
         data,
         update: () => {
           analyser.getByteFrequencyData(data);

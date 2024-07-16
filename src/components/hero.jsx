@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-
+import Link from "next/link";
 import  Image  from "next/image";
 
 import {TransitionEffect} from "../lib/transition-effect";
@@ -16,31 +16,8 @@ import GreenGlobe from "../../public/hero-globe.png";
 
 export default function Hero() {
 
-  const [screenSize, setScreenSize] = useState({ width: 0 });
-
-  useEffect(() => {
-    const updateScreenSize = () => {
-      setScreenSize({ width: window.innerWidth });
-    };
-
-    // Initial size on mount
-    updateScreenSize();
-
-    // Event listener for resizing
-    window.addEventListener("resize", updateScreenSize);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener("resize", updateScreenSize);
-    };
-  }, []);
-
 
 const { transitionRef, determineTransitionType } = TransitionEffect();
-
-  const handleClick = () => {
-    window.location.href = '/globe';
-  };
 
   return (
     <section style={determineTransitionType("translateY(0px)")} className="space-y-6 pt-12  md:pt-20 lg:pt-28 bg-primary-bg-color">
@@ -57,9 +34,9 @@ const { transitionRef, determineTransitionType } = TransitionEffect();
           instant, easy-to-understand feedback on your speech volume.
         </p>
         <div className="space-x-4">
-          <div onClick={handleClick} >
+          <Link href={'/globe'} >
             <PrimaryButton>Try for Free</PrimaryButton>
-          </div>
+          </Link>
         </div>
         <Image src={GreenGlobe} alt={"Green globe"}/>
       </div>
