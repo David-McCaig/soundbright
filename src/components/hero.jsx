@@ -1,17 +1,13 @@
 'use client'
 
 import React from "react";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import  Image  from "next/image";
 
 import {TransitionEffect} from "../lib/transition-effect";
 
 import PrimaryButton from "./primary-button";
-import PreviewSphere from "./preview-sphere";
 import GreenGlobe from "../../public/hero-globe.png";
-
-
 
 
 export default function Hero() {
