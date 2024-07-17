@@ -1,13 +1,22 @@
 'use client'
 
 // In your Globe page component
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import VoiceControlledSphere from '../../components/voice-controlled-sphere';
+import VoiceControlledCircle from '../../components/voice-controlled-circle';
 import { Container } from '../../components/container';
 
 export default function Globe() {
 
   const [ambientNoiseFilter, setAmbientNoiseFilter] = useState(0)
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof navigator !== "undefined") {
+      const mobileCheck = /iPhone|iPod|Android|Windows Phone|BB10|BlackBerry|Tizen|KaiOS/i.test(navigator.userAgent);
+      setIsMobile(mobileCheck);
+    }
+  }, []);
 
   return (
     <>
@@ -27,7 +36,8 @@ export default function Globe() {
         <div className='flex w-full h-screen justify-center'>
           <div className=' sm:hidden'>
           </div>
-          <VoiceControlledSphere ambientNoiseFilter={ambientNoiseFilter} setAmbientNoiseFilter={setAmbientNoiseFilter} />
+          {!isMobile ? <VoiceControlledSphere ambientNoiseFilter={ambientNoiseFilter} setAmbientNoiseFilter={setAmbientNoiseFilter} /> :
+          <VoiceControlledCircle ambientNoiseFilter={ambientNoiseFilter} setAmbientNoiseFilter={setAmbientNoiseFilter} />}
         </div>
       </div>
     </>

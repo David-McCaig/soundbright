@@ -4,20 +4,11 @@ import { Suspense, useRef } from "react";
 import { useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { suspend } from "suspend-react";
-import {
-  Environment,
-  OrbitControls,
-  Center,
-  Plane,
-  AccumulativeShadows,
-  RandomizedLight,
-  Html
-} from "@react-three/drei";
+import { Html } from "@react-three/drei";
 
 import LoadingDots from "./loading-dots";
 
 export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNoiseFilter }) {
-
   function Track({ radius = 1, ...props }) {
     const ref = useRef();
     const { update } = suspend(() => createAudio(), []);
@@ -29,32 +20,22 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
       if (!ref.current) return;
       let avg = update();
 
-      smoothAvg = (+ambientNoiseFilter + avg - 13) * (1 - decayFactor) + smoothAvg * decayFactor;
+      smoothAvg = (+ambientNoiseFilter + avg - 10) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
 
-      // More vibrant color calculation
-      const hue = (smoothAvg / 255) * 360; // Full hue range
-      const saturation = 1; // Maximum saturation
-      const lightness = 0.5; // Mid-range lightness for vibrant colors
-      ref.current.material.color.setHSL(hue / 360, saturation, lightness);
-
+      const hue = (smoothAvg / 255) * 360;
+      ref.current.material.color.setHSL(hue / 360, 1, 0.5);
     });
 
     return (
-      <mesh ref={ref} castShadow {...props}>
+      <mesh ref={ref} {...props}>
         <sphereGeometry args={[radius, 32, 32]} />
-        <meshPhysicalMaterial
-          metalness={0.1}
-          roughness={0.3}
-          envMapIntensity={1}
-          clearcoat={2}
-          clearcoatRoughness={0.2}
-        />
+        <meshStandardMaterial color="white" />
       </mesh>
     );
   }
 
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
 
   async function createAudio() {
     try {
@@ -63,12 +44,12 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
       const context = new AudioContext();
       const source = context.createMediaStreamSource(stream);
       const analyser = context.createAnalyser();
-  
+
       analyser.fftSize = 32;
       const data = new Uint8Array(analyser.frequencyBinCount);
-  
+
       source.connect(analyser);
-  
+
       return {
         data,
         update: () => {
@@ -85,7 +66,6 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
       };
     }
   }
-  
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -104,52 +84,15 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
     </Html>
   );
 
-  if(error) return  <div className="w-full h-screen mt-[20rem text-center mt-10 p-6 text-red-600">{error}</div> 
+  if (error) return <div className="w-full h-screen mt-[20rem text-center mt-10 p-6 text-red-600">{error}</div>;
 
   return (
-    <Canvas shadows dpr={isMobile ? [.1, 1.4] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
-      <Center middle>
-        <color attach="background" args={["#e0e0e0"]} />
-        <Suspense fallback={<LoadingScreen />}>
-         <Environment preset="sunset" background={false} />
-          <Track position={[0, 1.1, 0]} />
-          <Plane
-            receiveShadow
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -1, 0]}
-            args={[10, 10]}
-          >
-            <shadowMaterial transparent opacity={0.4} />
-          </Plane>
-          <AccumulativeShadows
-            temporal
-            frames={200}
-            color="purple"
-            colorBlend={0.5}
-            opacity={1}
-            scale={10}
-            alphaTest={0.85}
-          >
-            <RandomizedLight
-              amount={8}
-              radius={5}
-              ambient={0.5}
-              position={[5, 3, 2]}
-              bias={0.001}
-            />
-          </AccumulativeShadows>
-        </Suspense>
-        <OrbitControls
-          autoRotateSpeed={4}
-          enablePan={false}
-          enableZoom={false}
-          enableRotate={false}
-          minPolarAngle={Math.PI / 2.1}
-          maxPolarAngle={Math.PI / 2.1}
-        />
-      </Center>
+    <Canvas dpr={isMobile ? [0.1, 1.4] : [1, 2]} camera={{ position: [0, 0, 5], fov: 50 }}>
+      <Suspense fallback={<LoadingScreen />}>
+        <directionalLight position={[2, 1, 5]} intensity={1} />
+        <Track position={[0, .7, 0]} />
+      </Suspense>
     </Canvas>
   );
 }
-
 
