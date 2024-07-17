@@ -112,18 +112,18 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
   return (
     <Canvas shadows dpr={isMobile ? [.1, 1.4] : [1, 2]} camera={{ position: [-4, 15, 3], fov: 20 }}>
       <Center middle>
-        {/* <color attach="background" args={["#e0e0e0"]} /> */}
+        <color attach="background" args={["#e0e0e0"]} />
         <Suspense fallback={<LoadingScreen />}>
          <Environment preset="sunset" background={false} />
           <Track position={[0, 1.1, 0]} />
-          {/* <Plane
+          <Plane
             receiveShadow
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -1, 0]}
             args={[10, 10]}
-          > */}
-            {/* <shadowMaterial transparent opacity={0.4} /> */}
-          {/* </Plane> */}
+          >
+            <shadowMaterial transparent opacity={0.4} />
+          </Plane>
           <AccumulativeShadows
             temporal
             frames={200}
