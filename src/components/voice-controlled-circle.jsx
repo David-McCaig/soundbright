@@ -20,7 +20,7 @@ export default function VoiceControlledSphere({ ambientNoiseFilter, setAmbientNo
       if (!ref.current) return;
       let avg = update();
 
-      smoothAvg = (+ambientNoiseFilter + avg - 15) * (1 - decayFactor) + smoothAvg * decayFactor;
+      smoothAvg = (+ambientNoiseFilter + avg - 10) * (1 - decayFactor) + smoothAvg * decayFactor;
       ref.current.scale.setScalar(1 + smoothAvg / 500);
 
       const hue = (smoothAvg / 255) * 360;
