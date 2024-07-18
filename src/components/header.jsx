@@ -86,8 +86,6 @@ function MobileNavigation() {
             <MobileNavLink href="#features">Features</MobileNavLink>
             <MobileNavLink href="#faq">FAQs</MobileNavLink>
             <MobileNavLink href="/contact-us">Contact Us</MobileNavLink>
-            <hr className="m-2 border-slate-300/40" />
-            <MobileNavLink href="/login">Sign in</MobileNavLink>
           </PopoverPanel>
         </TransitionChild>
       </Transition>
