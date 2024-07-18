@@ -3,6 +3,8 @@ import { Header } from "../components/header";
 
 import { Analytics } from '@vercel/analytics/react';
 
+import Head from 'next/head';
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +22,13 @@ export default function RootLayout({ children }) {
 
     <html lang="en" className=
       'h-full scroll-smooth bg-white'>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        />
+        <link media="screen" rel="icon" href="/favicon.ico" sizes="any" />
+      </Head>
       <body className={inter.className}>
         <Header />
         {children}
