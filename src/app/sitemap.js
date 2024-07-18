@@ -28,7 +28,7 @@ function getFoldersRecursive(filePath) {
 }
 
 // Usage example
-const targetPath = path.join(process.cwd(), "src", "app", "(pages)");
+const targetPath = path.join(process.cwd(), "src", "app");
 const folderNames = getFoldersRecursive(targetPath);
 
 export default function sitemap() {
